@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receitas Fitness em 15 Minutos | E-book</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a6b3c;
+    --green-mid: #2d9e5f;
+    --green-light: #b7e8ce;
+    --green-pale: #f0faf5;
+    --orange: #e05c1a;
+    --cream: #fdf8f2;
+    --dark: #0f1f18;
+    --gray: #6b7b72;
+    --card-shadow: 0 8px 40px rgba(15,31,24,0.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 6vw;
+    background: rgba(253,248,242,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(26,107,60,0.12);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; color: var(--green);
+    letter-spacing: -0.5px;
+  }
+  .nav-cta {
+    background: var(--orange); color: #fff;
+    border: none; border-radius: 100px;
+    padding: .55rem 1.4rem; font-size: .85rem; font-weight: 600;
+    cursor: pointer; letter-spacing: .3px;
+    transition: transform .2s, box-shadow .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(224,92,26,.35); }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 4rem;
+    padding: 8rem 6vw 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 80% 40%, #c8f0dc 0%, transparent 60%),
+                radial-gradient(ellipse 40% 50% at 10% 70%, #fde8d4 0%, transparent 55%);
+    z-index: 0;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--green-pale); border: 1px solid var(--green-light);
+    color: var(--green); font-size: .8rem; font-weight: 600;
+    padding: .35rem .9rem; border-radius: 100px; margin-bottom: 1.5rem;
+    letter-spacing: .5px; text-transform: uppercase;
+    animation: fadeUp .6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1.1; font-weight: 900;
+    color: var(--dark); margin-bottom: 1.4rem;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 em { color: var(--green); font-style: italic; }
+  .hero p {
+    font-size: 1.1rem; color: var(--gray); line-height: 1.7;
+    max-width: 460px; margin-bottom: 2rem;
+    animation: fadeUp .6s .2s ease both;
+  }
+  .cta-group {
+    display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+    animation: fadeUp .6s .3s ease both;
+  }
+  .btn-main {
+    background: var(--green); color: #fff;
+    border: none; border-radius: 100px;
+    padding: 1rem 2.2rem; font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    box-shadow: 0 6px 30px rgba(26,107,60,.35);
+    transition: transform .2s, box-shadow .2s;
+    letter-spacing: .3px;
+  }
+  .btn-main:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(26,107,60,.4); }
+  .btn-ghost {
+    color: var(--dark); font-size: .95rem; font-weight: 500;
+    text-decoration: none; display: flex; align-items: center; gap: .4rem;
+  }
+  .btn-ghost span { font-size: 1.2rem; }
+  .social-proof {
+    margin-top: 2.5rem; display: flex; align-items: center; gap: 1rem;
+    animation: fadeUp .6s .4s ease both;
+  }
+  .avatars { display: flex; }
+  .avatars div {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 2px solid var(--cream); margin-left: -10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, var(--green-light), #e8f5ee);
+  }
+  .avatars div:first-child { margin-left: 0; }
+  .social-proof-text { font-size: .85rem; color: var(--gray); line-height: 1.3; }
+  .social-proof-text strong { color: var(--dark); }
+
+  .hero-visual {
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .2s ease both;
+  }
+  .ebook-card {
+    background: linear-gradient(145deg, var(--green) 0%, #0f4a28 100%);
+    border-radius: 24px; padding: 3rem 2.5rem;
+    box-shadow: 0 30px 80px rgba(15,31,24,0.30), 0 0 0 1px rgba(255,255,255,.06);
+    position: relative; overflow: hidden;
+    transform: rotate(2deg);
+    transition: transform .4s;
+  }
+  .ebook-card:hover { transform: rotate(0deg) scale(1.02); }
+  .ebook-card::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(255,255,255,.06);
+  }
+  .ebook-card::after {
+    content: '';
+    position: absolute; bottom: -60px; left: -30px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: rgba(255,255,255,.04);
+  }
+  .ebook-emoji { font-size: 4rem; margin-bottom: 1rem; display: block; }
+  .ebook-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; color: #fff; margin-bottom: .5rem;
+    position: relative; z-index: 1;
+  }
+  .ebook-card p { color: var(--green-light); font-size: .95rem; position: relative; z-index: 1; }
+  .ebook-tags {
+    display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .ebook-tag {
+    background: rgba(255,255,255,.12); color: #fff;
+    border-radius: 100px; padding: .3rem .8rem; font-size: .8rem;
+    border: 1px solid rgba(255,255,255,.15);
+  }
+  .price-badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: var(--orange); color: #fff;
+    border-radius: 100px; padding: .4rem 1rem; font-weight: 700;
+    font-size: .9rem; z-index: 2;
+    box-shadow: 0 4px 16px rgba(224,92,26,.4);
+  }
+  .floating-pill {
+    position: absolute; background: #fff;
+    border-radius: 14px; padding: .7rem 1rem;
+    box-shadow: var(--card-shadow); font-size: .82rem; font-weight: 500;
+    display: flex; align-items: center; gap: .5rem;
+    animation: float 3s ease-in-out infinite;
+    z-index: 2;
+  }
+  .floating-pill.p1 { bottom: -1.5rem; left: -2rem; animation-delay: 0s; }
+  .floating-pill.p2 { top: 2rem; right: -2rem; animation-delay: 1.5s; }
+
+  /* ── STATS ─────────────────────────────────────────────── */
+  .stats {
+    background: var(--dark); padding: 3.5rem 6vw;
+    display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 900; color: var(--green-light);
+    line-height: 1;
+  }
+  .stat-label { color: #8ba898; font-size: .9rem; margin-top: .3rem; }
+
+  /* ── FEATURES ─────────────────────────────────────────────── */
+  section { padding: 6rem 6vw; }
+  .section-label {
+    font-size: .78rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--green); margin-bottom: .8rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.15; margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--gray); font-size: 1.05rem; max-width: 500px; line-height: 1.7; }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .feature-card {
+    background: #fff; border-radius: 20px; padding: 2rem;
+    border: 1px solid rgba(26,107,60,.08);
+    box-shadow: var(--card-shadow);
+    transition: transform .3s, box-shadow .3s;
+    position: relative; overflow: hidden;
+  }
+  .feature-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--green), var(--green-mid));
+    transform: scaleX(0); transition: transform .3s;
+    transform-origin: left;
+  }
+  .feature-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(15,31,24,.15); }
+  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+  .feature-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+  .feature-card p { color: var(--gray); font-size: .9rem; line-height: 1.6; }
+
+  /* ── RECIPES PREVIEW ─────────────────────────────────────── */
+  .recipes-section { background: var(--green-pale); }
+  .recipes-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem; margin-top: 3rem;
+  }
+  .recipe-chip {
+    background: #fff; border-radius: 16px; padding: 1.2rem 1.4rem;
+    display: flex; align-items: center; gap: .8rem;
+    border: 1px solid rgba(26,107,60,.1);
+    box-shadow: 0 2px 12px rgba(15,31,24,.06);
+    transition: transform .2s;
+  }
+  .recipe-chip:hover { transform: translateX(4px); }
+  .recipe-chip-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .recipe-chip-info { flex: 1; }
+  .recipe-chip-name { font-size: .9rem; font-weight: 600; }
+  .recipe-chip-meta { font-size: .78rem; color: var(--gray); margin-top: .15rem; }
+  .recipe-chip-kcal {
+    font-size: .78rem; font-weight: 700; color: var(--green);
+    background: var(--green-pale); padding: .2rem .6rem; border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  /* ── TESTIMONIALS ─────────────────────────────────────────── */
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .testimonial {
+    background: #fff; border-radius: 20px; padding: 2rem;
+    border: 1px solid rgba(26,107,60,.08);
+    box-shadow: var(--card-shadow);
+    position: relative;
+  }
+  .testimonial::before {
+    content: '"'; font-family: 'Playfair Display', serif;
+    font-size: 5rem; color: var(--green-light);
+    position: absolute; top: .5rem; right: 1.5rem;
+    line-height: 1; font-weight: 900;
+  }
+  .stars { color: #f5a623; font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testimonial p { font-size: .95rem; line-height: 1.7; color: var(--dark); margin-bottom: 1.2rem; }
+  .testimonial-author { display: flex; align-items: center; gap: .8rem; }
+  .author-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    background: linear-gradient(135deg, var(--green-light), #d0f0e0);
+    flex-shrink: 0;
+  }
+  .author-name { font-weight: 700; font-size: .9rem; }
+  .author-role { font-size: .78rem; color: var(--gray); }
+
+  /* ── ABOUT / AUTHOR ─────────────────────────────────────── */
+  .about-section {
+    background: var(--dark); color: #fff;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .about-section h2 { color: #fff; }
+  .about-section .section-label { color: var(--green-light); }
+  .about-section .section-sub { color: #8ba898; }
+  .about-section ul { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: .7rem; }
+  .about-section li { display: flex; align-items: flex-start; gap: .7rem; font-size: .95rem; color: #c5dbd0; }
+  .about-section li::before { content: '✓'; color: var(--green-mid); font-weight: 700; flex-shrink: 0; }
+  .author-card {
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09);
+    border-radius: 24px; padding: 2.5rem; text-align: center;
+  }
+  .author-avatar-big {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-mid), var(--green));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; margin: 0 auto 1.2rem;
+    border: 3px solid rgba(255,255,255,.15);
+  }
+  .author-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; margin-bottom: .3rem; }
+  .author-card p { color: #8ba898; font-size: .9rem; line-height: 1.6; }
+
+  /* ── CTA SECTION ──────────────────────────────────────── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--green) 0%, #0d3d22 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '🥗';
+    position: absolute; font-size: 20rem; opacity: .04;
+    top: -4rem; left: -4rem; transform: rotate(-15deg);
+  }
+  .cta-section::after {
+    content: '💪';
+    position: absolute; font-size: 16rem; opacity: .04;
+    bottom: -3rem; right: -2rem; transform: rotate(10deg);
+  }
+  .cta-section h2 {
+    color: #fff; max-width: 640px; margin: 0 auto 1rem;
+    position: relative; z-index: 1;
+  }
+  .cta-section p { color: var(--green-light); font-size: 1.05rem; margin-bottom: 2.5rem; position: relative; z-index: 1; }
+  .cta-box {
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+    border-radius: 24px; padding: 2.5rem 3rem; display: inline-block;
+    backdrop-filter: blur(10px); position: relative; z-index: 1;
+    max-width: 480px; width: 100%;
+  }
+  .price-original { text-decoration: line-through; color: rgba(255,255,255,.4); font-size: .95rem; margin-bottom: .3rem; }
+  .price-current {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem; font-weight: 900; color: #fff;
+    line-height: 1; margin-bottom: .5rem;
+  }
+  .price-note { color: var(--green-light); font-size: .85rem; margin-bottom: 1.8rem; }
+  .btn-cta-big {
+    background: var(--orange); color: #fff;
+    border: none; border-radius: 100px;
+    padding: 1.1rem 2.8rem; font-size: 1.05rem; font-weight: 700;
+    cursor: pointer; width: 100%; letter-spacing: .3px;
+    box-shadow: 0 8px 30px rgba(224,92,26,.5);
+    transition: transform .2s, box-shadow .2s;
+    text-decoration: none; display: block;
+    margin-bottom: .8rem;
+  }
+  .btn-cta-big:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(224,92,26,.6); }
+  .guarantee { color: rgba(255,255,255,.6); font-size: .8rem; }
+  .guarantee span { color: var(--green-light); }
+
+  /* ── FAQ ─────────────────────────────────────────────── */
+  .faq-list { margin-top: 3rem; max-width: 720px; }
+  .faq-item {
+    border-bottom: 1px solid rgba(26,107,60,.12); padding: 1.4rem 0;
+  }
+  .faq-item:first-child { border-top: 1px solid rgba(26,107,60,.12); }
+  .faq-q {
+    font-weight: 600; font-size: 1rem; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem;
+  }
+  .faq-q span { font-size: 1.2rem; transition: transform .3s; color: var(--green); }
+  .faq-item.open .faq-q span { transform: rotate(45deg); }
+  .faq-a {
+    font-size: .93rem; color: var(--gray); line-height: 1.7;
+    max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding-top: .8rem; }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  footer {
+    background: var(--dark); color: #8ba898;
+    text-align: center; padding: 2.5rem 6vw; font-size: .85rem;
+  }
+  footer strong { color: var(--green-light); }
+
+  /* ── ANIMATIONS ──────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+  }
+
+  /* ── SCROLL REVEAL ───────────────────────────────────── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ──────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding-top: 6rem; }
+    .hero-visual { order: -1; }
+    .ebook-card { transform: none; }
+    .floating-pill.p2 { top: 1rem; right: -1rem; }
+    .floating-pill.p1 { bottom: -1rem; left: -1rem; }
+    .about-section { grid-template-columns: 1fr; }
+    .stats { flex-direction: column; text-align: center; }
+    .cta-box { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">🥗 Fitness 15min</div>
+  <a href="https://pay.kirvano.com/2ff6d836-4193-4165-a423-a55e8d71f53c" class="nav-cta" target="_blank">Quero o E-book</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:8rem">
+  <div class="hero-text">
+    <div class="badge">📘 E-book Digital Exclusivo</div>
+    <h1>10 Receitas <em>Fitness</em><br>em 15 Minutos</h1>
+    <p>Chega de desculpas! Refeições saborosas, equilibradas e com tabela de macros — prontas antes do seu café esfriar.</p>
+    <div class="cta-group">
+      <a href="https://pay.kirvano.com/2ff6d836-4193-4165-a423-a55e8d71f53c" class="btn-main" target="_blank">Quero começar agora →</a>
+      <a href="#receitas" class="btn-ghost"><span>▶</span> Ver receitas</a>
+    </div>
+    <div class="social-proof">
+      <div class="avatars">
+        <div>👩</div><div>🧔</div><div>👩‍🦰</div><div>👨</div>
+      </div>
+      <div class="social-proof-text">
+        <strong>+2.300 pessoas</strong> já transformaram<br>sua alimentação com este e-book
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="ebook-card">
+      <div class="price-badge">R$ 27</div>
+      <span class="ebook-emoji">🥗</span>
+      <h3>Receitas Fitness<br>em 15 Minutos</h3>
+      <p>Apresentado por Ana Carolina Souza</p>
+      <div class="ebook-tags">
+        <span class="ebook-tag">☀️ Café da Manhã</span>
+        <span class="ebook-tag">🥗 Almoço</span>
+        <span class="ebook-tag">🍏 Lanches</span>
+        <span class="ebook-tag">🌙 Jantar</span>
+      </div>
+    </div>
+    <div class="floating-pill p1">⚡ 10 receitas completas</div>
+    <div class="floating-pill p2">📊 Macros calculados</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">10</div>
+    <div class="stat-label">Receitas completas</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">≤15</div>
+    <div class="stat-label">Minutos de preparo</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Com tabela de macros</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2.3k</div>
+    <div class="stat-label">Clientes satisfeitos</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section>
+  <div class="section-label reveal">Por que este e-book?</div>
+  <h2 class="reveal">Tudo que você precisa,<br>sem complicação</h2>
+  <p class="section-sub reveal">Criado para pessoas reais, com rotina corrida e grandes objetivos fitness.</p>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">⏱</div>
+      <h4>Rápido de Verdade</h4>
+      <p>Todas as receitas são concluídas em até 15 minutos. Cronometramos cada uma.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">💪</div>
+      <h4>Rico em Proteína</h4>
+      <p>Cada prato foi formulado para ter alto teor proteico, essencial para quem treina.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">📊</div>
+      <h4>Macros no Detalhe</h4>
+      <p>Calorias, proteínas, carboidratos e gorduras calculados por porção. Sem chute.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">😋</div>
+      <h4>Saboroso de Verdade</h4>
+      <p>Saudável não significa sem gosto. Cada receita foi testada e aprovada.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🛒</div>
+      <h4>Ingredientes Simples</h4>
+      <p>Tudo que você encontra no mercado do bairro, sem suplementos exóticos.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">📱</div>
+      <h4>Acesso Imediato</h4>
+      <p>Após o pagamento, o PDF chega direto no seu e-mail. Leia em qualquer dispositivo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECIPES PREVIEW -->
+<section class="recipes-section" id="receitas">
+  <div class="section-label reveal">O que tem dentro</div>
+  <h2 class="reveal">10 receitas para todas<br>as refeições do dia</h2>
+  <p class="section-sub reveal">Do café da manhã ao jantar — sua semana coberta com saúde e sabor.</p>
+  <div class="recipes-grid">
+    <div class="recipe-chip reveal">
+      <div class="recipe-chip-icon">🥞</div>
+      <div class="recipe-chip-info">
+        <div class="recipe-chip-name">Panqueca de Banana c/ Aveia</div>
+        <div class="recipe-chip-meta">☀️ Café da manhã · 10 min</div>
+      </div>
+      <div class="recipe-chip-kcal">320 kcal</div>
+    </div>
+    <div class="recipe-chip reveal">
+      <div class="recipe-chip-icon">🥤</div>
+      <div class="recipe-chip-info">
+        <div class="recipe-chip-name">Vitamina de Proteína Morango</div>
+        <div class="recipe-chip-meta">☀️ Café da manhã · 5 min</div>
+      </div>
+      <div class="recipe-chip-kcal">280 kcal</div>
+    </div>
+    <div class="recipe-chip reveal">
+      <div class="recipe-chip-icon">🌙</div>
+      <div class="recipe-chip-info">
+        <div class="recipe-chip-name">Overnight Oats com Chia</div>
+        <div class="recipe-chip-meta">☀️ Café da manhã · 5 min</div>
+      </div>
+      <div class="recipe-chip-kcal">350 kcal</div>
+    </div>
+    <div class="recipe-chip reveal">
+      <div class="recipe-chip-icon">🍗</div>
+      <div class="recipe-chip-info">
+        <div class="recipe-chip-name">Bowl de Frango c/ Quinoa</div>
+        <div class="recipe-chip-meta">🥗 Almoço · 15 min</div>
+      </div>
+      <div class="recipe-chip-kcal">480 kcal</div>
+    </div>
+    <div class="recipe-chip reveal">
+      <div class="recipe-chip-icon">🍳</div>
+      <div class="recipe-chip-info">
+        <div class="recipe-chip-name">Omelete Fitness de Espinafre</div>
+        <div class="recipe-chip-meta">🥗 Almoço · 10 min</div>
+      </div>
+      <div class="recipe-chip-kcal">310 kcal</div>
+    </div>
+    <div class="recipe-chip reveal">
+      <div class="recipe-chip-icon">🌯</div>
+      <div class="recipe-chip-info">
+        <div class="recipe-chip-name">Wrap de Atum c/ Cream Cheese</div>
+        <div class="recipe-chip-meta">🥗 Almoço · 8 min</div>
+      </div>
+      <div class="recipe-chip-kcal">390 kcal</div>
+    </div>
+    <div class="recipe-chip reveal">
+      <div class="recipe-chip-icon">🥜</div>
+      <div class="recipe-chip-info">
+        <div class="recipe-chip-name">Bolinhas de Proteína Amendoim</div>
+        <div class="recipe-chip-meta">🍏 Lanche · 10 min</div>
+      </div>
+      <div class="recipe-chip-kcal">95 kcal/un</div>
+    </div>
+    <div class="recipe-chip reveal">
+      <div class="recipe-chip-icon">🍦</div>
+      <div class="recipe-chip-info">
+        <div class="recipe-chip-name">Iogurte Grego c/ Granola</div>
+        <div class="recipe-chip-meta">🍏 Lanche · 3 min</div>
+      </div>
+      <div class="recipe-chip-kcal">240 kcal</div>
+    </div>
+    <div class="recipe-chip reveal">
+      <div class="recipe-chip-icon">🐟</div>
+      <div class="recipe-chip-info">
+        <div class="recipe-chip-name">Salmão c/ Aspargos no Forno</div>
+        <div class="recipe-chip-meta">🌙 Jantar · 15 min</div>
+      </div>
+      <div class="recipe-chip-kcal">420 kcal</div>
+    </div>
+    <div class="recipe-chip reveal">
+      <div class="recipe-chip-icon">🍛</div>
+      <div class="recipe-chip-info">
+        <div class="recipe-chip-name">Frango ao Curry Light</div>
+        <div class="recipe-chip-meta">🌙 Jantar · 15 min</div>
+      </div>
+      <div class="recipe-chip-kcal">380 kcal</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="section-label reveal">Depoimentos</div>
+  <h2 class="reveal">Quem já usou e<br><em>adorou</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial reveal">
+      <div class="stars">★★★★★</div>
+      <p>Finalmente um e-book que faz sentido pra minha rotina! Preparo o overnight oats na noite anterior e já acordo com o café pronto. Economizei pelo menos 30 minutos pela manhã.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👩‍🦰</div>
+        <div>
+          <div class="author-name">Rafaela M.</div>
+          <div class="author-role">Personal trainer · SP</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial reveal">
+      <div class="stars">★★★★★</div>
+      <p>Comprei achando que seria mais do mesmo, mas me surpreendi! As macros são precisas e as receitas realmente ficam prontas no tempo prometido. O wrap de atum virou minha marmita fixa.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">🧔</div>
+        <div>
+          <div class="author-name">Carlos H.</div>
+          <div class="author-role">Engenheiro · MG</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial reveal">
+      <div class="stars">★★★★★</div>
+      <p>Perdi 4kg em 6 semanas só ajustando as refeições com essas receitas. Sem passar fome, sem comida sem graça. O salmão com aspargos parece restaurante!.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👩</div>
+        <div>
+          <div class="author-name">Júlia T.</div>
+          <div class="author-role">Pedagoga · RJ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div>
+    <div class="section-label">A autora</div>
+    <h2>Nutrição que cabe<br>na sua realidade</h2>
+    <p class="section-sub">Ana Carolina Souza é nutricionista especialista em performance esportiva, com mais de 8 anos ajudando pessoas a atingirem seus objetivos sem abrir mão do sabor.</p>
+    <ul>
+      <li>Mais de 2.300 clientes atendidos</li>
+      <li>Especialização em nutrição esportiva — USP</li>
+      <li>Parceira de academias e atletas amadores</li>
+      <li>Criadora do método "Fit em 15" de alimentação prática</li>
+    </ul>
+  </div>
+  <div class="author-card reveal">
+    <div class="author-avatar-big">👩‍🍳</div>
+    <h3>Ana Carolina Souza</h3>
+    <p>Nutricionista esportiva · CRN 12345<br><br>"Acredito que comer bem não deveria ser privilégio de quem tem tempo livre. Por isso criei receitas que respeitam a vida real das pessoas."</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="comprar">
+  <div class="section-label" style="color:var(--green-light)">Oferta por tempo limitado</div>
+  <h2>Comece hoje. Sua saúde<br>não pode esperar.</h2>
+  <p>Acesso vitalício · PDF de alta qualidade · Entrega imediata</p>
+  <div class="cta-box">
+    <div class="price-original">De R$ 67</div>
+    <div class="price-current">R$ 27</div>
+    <div class="price-note">Pagamento único · Sem mensalidade</div>
+    <a href="https://pay.kirvano.com/2ff6d836-4193-4165-a423-a55e8d71f53c" class="btn-cta-big" target="_blank">✅ Quero o E-book agora</a>
+    <div class="guarantee">🔒 Pagamento seguro · <span>7 dias de garantia</span> ou devolvemos seu dinheiro</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="section-label reveal">Dúvidas frequentes</div>
+  <h2 class="reveal">FAQ</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Como recebo o e-book após a compra? <span>+</span></div>
+      <div class="faq-a">Imediatamente após a confirmação do pagamento, você receberá um e-mail com o link para download do PDF. O acesso é vitalício.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Preciso de equipamentos especiais na cozinha? <span>+</span></div>
+      <div class="faq-a">Não! Todas as receitas foram pensadas para uma cozinha comum. Você precisará apenas de frigideira, liquidificador e forno — o básico de qualquer lar.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">O e-book funciona para veganos ou vegetarianos? <span>+</span></div>
+      <div class="faq-a">Algumas receitas são naturalmente vegetarianas (panqueca, overnight oats, iogurte). Cada receita indica adaptações possíveis no rodapé.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">E se eu não gostar? <span>+</span></div>
+      <div class="faq-a">Você tem 7 dias de garantia total. Se não ficar satisfeito(a) por qualquer motivo, basta nos enviar um e-mail e devolvemos 100% do seu dinheiro, sem perguntas.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Posso ler no celular? <span>+</span></div>
+      <div class="faq-a">Sim! O PDF é otimizado para leitura em qualquer dispositivo — celular, tablet ou computador.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Receitas Fitness em 15 Minutos</strong> · por Ana Carolina Souza</p>
+  <p style="margin-top:.5rem">© 2025 Todos os direitos reservados · Feito com 💚</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
